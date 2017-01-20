@@ -12,6 +12,8 @@ import IconButton from 'material-ui/IconButton'
 
 import store from './store'
 
+injectTapEventPlugin()
+
 class App extends React.Component{
   render(){
     return(

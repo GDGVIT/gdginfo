@@ -38,7 +38,7 @@ class OrganizationInfo extends React.Component {
     }
     console.log(members);
     const mappedMembers=members.map(member=>
-      <div className="col s3"><div className="card"><div className="card-image"><img src={member.avatar_url}/><div className="card-title" style={styles.customCardTitle}>{member.login}</div></div></div></div>
+      <div className="col s3" key={member.id}><div className="card"><div className="card-image"><img src={member.avatar_url}/><div className="card-title" style={styles.customCardTitle}>{member.login}</div></div></div></div>
     )
     return(
       <div>
