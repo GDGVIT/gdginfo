@@ -21,7 +21,8 @@
     "deploy:dev": "better-npm-run deploy:dev",
     "deploy:prod": "better-npm-run deploy:prod",
     "codecov": "cat coverage/*/lcov.info | codecov",
-    "localstart": "better-npm-run localstart"
+    "localstart": "better-npm-run localstart",
+    "heroku-postbuild": "npm run build"
   },
   "betterScripts": {
     "compile": {
