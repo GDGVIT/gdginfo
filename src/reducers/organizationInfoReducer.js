@@ -1,6 +1,7 @@
 const initialState={
   data:[],
-  users:[]
+  users:[],
+  events:[]
 }
 
 export default function reducer(state=initialState,action){
@@ -8,10 +9,14 @@ export default function reducer(state=initialState,action){
     case "FETCH_APP_INFO_FULFILLED":{
       return {...state,data:action.payload.data}
     }
+    break
     case "FETCH_USERS_FULFILLED":{
       return {...state,users:action.payload.data}
     }
     break
+    case "FETCH_EVENTS_FULFILLED":{
+      return {...state,events:action.payload.data}
+    }
   }
   return state
 }

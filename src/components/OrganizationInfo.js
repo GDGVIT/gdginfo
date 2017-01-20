@@ -1,11 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchInfo,getUsers} from '../actions/organizationInfoActions'
+import {fetchInfo,getUsers,getEvents} from '../actions/organizationInfoActions'
+import Graph from './Graph'
 
 @connect((store)=>{
   return{
     organizations:store.organizationsInfo.data,
-    members:store.organizationsInfo.users
+    members:store.organizationsInfo.users,
+    events:store.organizationsInfo.events
   }
 })
 class OrganizationInfo extends React.Component {
@@ -18,12 +20,13 @@ class OrganizationInfo extends React.Component {
   componentWillMount(){
     this.props.dispatch(fetchInfo())
     this.props.dispatch(getUsers())
+    this.props.dispatch(getEvents())
     console.log(this.props)
   }
   render(){
     console.log('Hello World!')
     console.log(this.props.organizations)
-    const {organizations,members}=this.props
+    const {organizations,members,events}=this.props
     const styles={
       image:{
         width:'200px'
@@ -36,10 +39,18 @@ class OrganizationInfo extends React.Component {
         width:'100%'
       }
     }
-    console.log(members);
     const mappedMembers=members.map(member=>
       <div className="col s3" key={member.id}><div className="card"><div className="card-image"><img src={member.avatar_url}/><div className="card-title" style={styles.customCardTitle}>{member.login}</div></div></div></div>
     )
+    const mappedEvents=events.map(event=>
+      <div className="col s12" key={event.id}>
+        {event.type}
+        {event.actor.login}
+        {event.repo.name}
+      </div>
+    )
+
+    console.log(events);
     return(
       <div>
         <div className="center">
@@ -80,6 +91,8 @@ class OrganizationInfo extends React.Component {
           <h1 className="center">Members</h1>
           {mappedMembers}
         </div>
+        {mappedEvents}
+        <Graph events={this.props.events}/>
       </div>
     )
   }

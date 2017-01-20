@@ -18,3 +18,13 @@ export function getUsers(){
     })
   }
 }
+
+export function getEvents(){
+  return{
+    type:'FETCH_EVENTS',
+    payload:axios({
+      method:'get',
+      url:'https://api.github.com/orgs/GDGVIT/events'
+    })
+  }
+}
