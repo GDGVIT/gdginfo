@@ -10,12 +10,13 @@ class Graph extends React.Component {
     }
   }
   componentDidMount(){
-    console.log(this.props);
+    console.log(this.state.events);
   }
   componentWillMount(){
     console.log(this.props)
   }
   render(){
+    console.log(this.state.events);
     return(
       <div>
         <h1>This is from Graph!</h1>

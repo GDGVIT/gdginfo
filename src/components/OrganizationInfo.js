@@ -14,7 +14,9 @@ class OrganizationInfo extends React.Component {
   constructor(props) {
     super(props)
     this.state={
-      organizations:[]
+      organizations:this.props.organizations,
+      members:this.props.members,
+      events:this.props.events
     }
   }
   componentWillMount(){
@@ -39,8 +41,23 @@ class OrganizationInfo extends React.Component {
         width:'100%'
       }
     }
+    // const mappedMembers=members.map(member=>
+    //   <div className="col m3 s12" key={member.id}>
+    // <div className="card">
+    //   <div className="card-image">
+    //     <img src={member.avatar_url}/>
+    //     <div className="card-title" style={styles.customCardTitle}>
+    //       {member.login}</div></div></div></div>
+    // )
     const mappedMembers=members.map(member=>
-      <div className="col m3 s12" key={member.id}><div className="card"><div className="card-image"><img src={member.avatar_url}/><div className="card-title" style={styles.customCardTitle}>{member.login}</div></div></div></div>
+        <li class="collection-item avatar" key={member.id}>
+          <img src={member.avatar_url} alt="" class="circle"/>
+          <span class="title">{member.login}</span>
+          <p>First Line <br/>
+             Second Line
+          </p>
+          <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
+        </li>
     )
     const mappedEvents=events.map(event=>
       <div className="col s12" key={event.id}>
@@ -88,14 +105,20 @@ class OrganizationInfo extends React.Component {
 
         {/*The List of Members to be followed*/}
         <div className="row">
+
           <h1 className="center">Members</h1>
-          {mappedMembers}
+          <ul className="collection col s8 push-s2">
+            {mappedMembers}
+          </ul>
         </div>
         {mappedEvents}
-        {/* <Graph events={this.props.events}/> */}
+        <Graph events={this.state.events}/>
       </div>
     )
+    console.log(this.state.events);
   }
 }
 
 export default OrganizationInfo
+
+// List of repo and top contributor
