@@ -19304,8 +19304,7 @@ webpackJsonp([0],[
 	          ),
 	          mappedMembers
 	        ),
-	        mappedEvents,
-	        _react2.default.createElement(_Graph2.default, { events: this.props.events })
+	        mappedEvents
 	      );
 	    }
 	  }]);
@@ -20645,8 +20644,7 @@ webpackJsonp([0],[
 	          'h1',
 	          null,
 	          'This is from Graph!'
-	        ),
-	        this.state.events[0].id
+	        )
 	      );
 	    }
 	  }]);
@@ -34870,4 +34868,4 @@ webpackJsonp([0],[
 
 /***/ }
 ]);
-//# sourceMappingURL=app.1f23960dd11dfa886732.js.map
+//# sourceMappingURL=app.e94eccd6a314ad402251.js.map
