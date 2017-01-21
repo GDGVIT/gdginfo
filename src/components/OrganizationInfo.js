@@ -40,7 +40,7 @@ class OrganizationInfo extends React.Component {
       }
     }
     const mappedMembers=members.map(member=>
-      <div className="col s3" key={member.id}><div className="card"><div className="card-image"><img src={member.avatar_url}/><div className="card-title" style={styles.customCardTitle}>{member.login}</div></div></div></div>
+      <div className="col m3 s12" key={member.id}><div className="card"><div className="card-image"><img src={member.avatar_url}/><div className="card-title" style={styles.customCardTitle}>{member.login}</div></div></div></div>
     )
     const mappedEvents=events.map(event=>
       <div className="col s12" key={event.id}>
@@ -60,25 +60,25 @@ class OrganizationInfo extends React.Component {
           <h4>{organizations.location}</h4>
         </div>
         <div className="row center">
-          <div className="col s3">
+          <div className="col m3 s12">
           <div className="card" style={styles.descriptionCard}>
             <div className="card-title">{organizations.public_repos}</div>
             <div className="card-content">Public Repos</div>
           </div>
         </div>
-          <div className="col s3">
+          <div className="col m3 s12">
           <div className="card" style={styles.descriptionCard}>
             <div className="card-title">{organizations.public_gists}</div>
             <div className="card-content">Public Gists</div>
           </div>
         </div>
-          <div className="col s3">
+          <div className="col m3 s12">
           <div className="card" style={styles.descriptionCard}>
             <div className="card-title" style={{fontSize:'20px'}}>{organizations.blog}</div>
             <div className="card-content">Website</div>
           </div>
         </div>
-          <div className="col s3">
+          <div className="col m3 s12">
           <div className="card" style={styles.descriptionCard}>
             <div className="card-title" style={{fontSize:'20px'}}>{organizations.email}</div>
             <div className="card-content">Email</div>
