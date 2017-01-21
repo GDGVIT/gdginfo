@@ -92,7 +92,7 @@ class OrganizationInfo extends React.Component {
           {mappedMembers}
         </div>
         {mappedEvents}
-        <Graph events={this.props.events}/>
+        {/* <Graph events={this.props.events}/> */}
       </div>
     )
   }
