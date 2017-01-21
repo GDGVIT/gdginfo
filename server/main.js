@@ -28,7 +28,7 @@ if (project.env === 'development') {
     lazy        : false,
     stats       : project.compiler_stats
   }))
-  
+
   app.use(require('webpack-hot-middleware')(compiler, {
   log: console.log,
   path: '/__webpack_hmr',
@@ -46,7 +46,7 @@ if (project.env === 'development') {
   // This rewrites all routes requests to the root /index.html file
   // (ignoring file requests). If you want to implement universal
   // rendering, you'll want to remove this middleware.
-  app.use('/*', function (req, res, next) {
+  app.use('/', function (req, res, next) {
     const filename = path.join(compiler.outputPath, 'index.html')
     compiler.outputFileSystem.readFile(filename, (err, result) => {
       if (err) {
@@ -71,5 +71,13 @@ if (project.env === 'development') {
   // server in production.
   app.use(express.static(project.paths.dist()))
 }
+
+// API Calls follow
+app.get('/info',function(req,res){
+  res.send(axios({
+    method:'get',
+    url:'https://api.github.com/orgs/GDGVIT?client_id=e63b429174efcee3f453&client_secret=baf28b3b72e252c8d54180bfa0b9706e90caa33c'
+  }))
+})
 
 module.exports = app

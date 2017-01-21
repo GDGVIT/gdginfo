@@ -14,6 +14,7 @@
     "lint:fix": "npm run lint -- --fix",
     "start": "better-npm-run localstart",
     "start:prod": "better-npm-run prodstart",
+    "start:dev":"better-npm-run devstart",
     "dev": "better-npm-run dev",
     "test": "better-npm-run test",
     "test:dev": "npm run test -- --watch",
@@ -57,6 +58,13 @@
       "env": {
         "NODE_ENV": "production",
         "DEBUG": "app:*"
+      }
+    },
+    "devstart":{
+      "command":"nodemon bin/dev-server",
+      "env":{
+        "NODE_ENV":"development",
+        "DEBUG":"app:*"
       }
     },
     "localstart": {

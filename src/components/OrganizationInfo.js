@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchInfo,getUsers,getEvents} from '../actions/organizationInfoActions'
 import Graph from './Graph'
+import Event from './Event'
 
 @connect((store)=>{
   return{
@@ -20,10 +21,12 @@ class OrganizationInfo extends React.Component {
     }
   }
   componentWillMount(){
+    console.log(this.props)
+  }
+  componentDidMount(){
     this.props.dispatch(fetchInfo())
     this.props.dispatch(getUsers())
     this.props.dispatch(getEvents())
-    console.log(this.props)
   }
   render(){
     console.log('Hello World!')
@@ -39,39 +42,33 @@ class OrganizationInfo extends React.Component {
       customCardTitle:{
         background:'rgba(0,0,0,0.5)',
         width:'100%'
+      },
+      collectionHeader:{
+        fontSize:'24px',
+        marginTop:'50px'
       }
     }
-    // const mappedMembers=members.map(member=>
-    //   <div className="col m3 s12" key={member.id}>
-    // <div className="card">
-    //   <div className="card-image">
-    //     <img src={member.avatar_url}/>
-    //     <div className="card-title" style={styles.customCardTitle}>
-    //       {member.login}</div></div></div></div>
-    // )
     const mappedMembers=members.map(member=>
-        <li class="collection-item avatar" key={member.id}>
+        <li class="collection-item avatar col m4 s12" key={member.id} style={{marginTop:'30px'}}>
           <img src={member.avatar_url} alt="" class="circle"/>
-          <span class="title">{member.login}</span>
-          <p>First Line <br/>
-             Second Line
-          </p>
+          <span class="title" style={styles.collectionHeader}>{member.login}</span>
           <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
         </li>
     )
     const mappedEvents=events.map(event=>
-      <div className="col s12" key={event.id}>
-        {event.type}
-        {event.actor.login}
-        {event.repo.name}
-      </div>
-    )
+      <Event className="col s12" key={event.id}
+        crime={event.type}
+        culprit={event.actor.login}
+        crimescene={event.repo.name}
+      />
 
+    )
     console.log(events);
+    console.log(this.state.events);
     return(
       <div>
         <div className="center">
-          <img src={organizations.avatar_url} style={styles.image}/>
+          <img src={organizations.avatar_url} style={styles.image} className="circle"/>
           <br/>
           <h3>{organizations.description}</h3>
           <h4>{organizations.location}</h4>
@@ -107,15 +104,19 @@ class OrganizationInfo extends React.Component {
         <div className="row">
 
           <h1 className="center">Members</h1>
-          <ul className="collection col s8 push-s2">
+          <ul className="collection col m10 push-m1 s12">
             {mappedMembers}
           </ul>
         </div>
-        {mappedEvents}
-        <Graph events={this.state.events}/>
+        <div className="row">
+          <h1 className="center">Activity</h1>
+          <ul className="col m8 push-m2 s12 card collapsible" data-collapsible="accordion">
+            {mappedEvents}
+          </ul>
+        </div>
+        <Graph events={events}/>
       </div>
     )
-    console.log(this.state.events);
   }
 }
 
