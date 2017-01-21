@@ -27,6 +27,7 @@ class OrganizationInfo extends React.Component {
     this.props.dispatch(fetchInfo())
     this.props.dispatch(getUsers())
     this.props.dispatch(getEvents())
+    $('.collapsible').collapsible();
   }
   render(){
     console.log('Hello World!')
@@ -56,12 +57,12 @@ class OrganizationInfo extends React.Component {
         </li>
     )
     const mappedEvents=events.map(event=>
-      <Event className="col s12" key={event.id}
+      <Event key={event.id}
         crime={event.type}
         culprit={event.actor.login}
         crimescene={event.repo.name}
+        sentence={event.type=='PushEvent'?event.payload.commits:''}
       />
-
     )
     console.log(events);
     console.log(this.state.events);
