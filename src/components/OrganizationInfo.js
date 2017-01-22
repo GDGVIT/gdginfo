@@ -10,7 +10,7 @@ import Event from './Event'
     organizations:store.organizationsInfo.data,
     members:store.organizationsInfo.users,
     events:store.organizationsInfo.events,
-    stats:store.stats
+    stats:store.organizationsInfo.stats
   }
 })
 class OrganizationInfo extends React.Component {
@@ -47,6 +47,7 @@ class OrganizationInfo extends React.Component {
   render(){
     console.log('Hello World!')
     console.log(this.props.organizations)
+    console.log(this.props.stats);
     const {organizations,members,events}=this.props
     const styles={
       image:{
@@ -131,7 +132,9 @@ class OrganizationInfo extends React.Component {
             {mappedEvents}
           </ul>
         </div>
-        <Graph events={events}/>
+
+        <Graph/>
+
       </div>
     )
   }

@@ -14,7 +14,7 @@
     "lint:fix": "npm run lint -- --fix",
     "start": "better-npm-run localstart",
     "start:prod": "better-npm-run prodstart",
-    "start:dev":"better-npm-run devstart",
+    "start:dev": "better-npm-run devstart",
     "dev": "better-npm-run dev",
     "test": "better-npm-run test",
     "test:dev": "npm run test -- --watch",
@@ -60,11 +60,11 @@
         "DEBUG": "app:*"
       }
     },
-    "devstart":{
-      "command":"nodemon bin/dev-server",
-      "env":{
-        "NODE_ENV":"development",
-        "DEBUG":"app:*"
+    "devstart": {
+      "command": "nodemon bin/dev-server",
+      "env": {
+        "NODE_ENV": "development",
+        "DEBUG": "app:*"
       }
     },
     "localstart": {
@@ -74,11 +74,11 @@
         "DEBUG": "app:*"
       }
     },
-    "prodstart":{
-      "command":"node bin/dev-server",
-      "env":{
-        "NODE_ENV":"production",
-        "DEBUG":"app:*"
+    "prodstart": {
+      "command": "node bin/dev-server",
+      "env": {
+        "NODE_ENV": "production",
+        "DEBUG": "app:*"
       }
     },
     "start": {
@@ -118,6 +118,7 @@
     "babel-preset-stage-0": "^6.3.13",
     "babel-runtime": "^6.11.6",
     "better-npm-run": "0.0.13",
+    "chart.js": "^2.4.0",
     "compression": "^1.6.2",
     "css-loader": "^0.26.0",
     "cssnano": "^3.7.4",
@@ -135,6 +136,8 @@
     "postcss-loader": "^1.1.0",
     "react": "^15.0.0",
     "react-bootstrap": "^0.30.7",
+    "react-chartjs": "^0.8.0",
+    "react-chartjs-2": "^2.0.0",
     "react-dom": "^15.0.0",
     "react-fontawesome": "^1.5.0",
     "react-materialize": "^0.17.6",

@@ -1,3 +1,4 @@
+'use strict'
 const express = require('express')
 const debug = require('debug')('app:server')
 const path = require('path')
@@ -38,6 +39,42 @@ res.send(response.data);
 .catch(function(error){
   console.error(error);
 })
+})
+
+var stat={
+  'rahulakrishna':4,
+  'krishnasreemnon':5,
+  'jambavan':3,
+  'alkaajith':2
+}
+app.get('/eventsGraph',function(req,res){
+  axios.get('https://api.github.com/orgs/GDGVIT/events?client_id=e63b429174efcee3f453&client_secret=baf28b3b72e252c8d54180bfa0b9706e90caa33c')
+  .then(function(response){
+    let uniquename=[]
+    response.data.forEach(function(x){
+      if(uniquename.indexOf(x.actor.login)<0){
+        uniquename.push(x.actor.login)
+      }
+    })
+    let result=[]
+    uniquename.forEach(function(name){
+      let count=0
+      response.data.forEach(function(data){
+        if(data.actor.login==name){
+          count=count+1
+        }
+      })
+      result.push({name:name,count:count})
+    })
+    return Promise.resolve(result)
+  })
+  .then(function(result){
+    console.log(result);
+    res.send(result)
+  })
+  .catch(function(error){
+    console.error(error);
+  })
 })
 
 // Apply gzip compression

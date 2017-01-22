@@ -30,3 +30,13 @@ export function getEvents(){
     })
   }
 }
+
+export function fetchGraphEvents(){
+  return{
+    type:'FETCH_GRAPH_EVENTS',
+    payload:axios({
+      method:'get',
+      url:'/eventsGraph'
+    })
+  }
+}

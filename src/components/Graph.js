@@ -1,5 +1,13 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {fetchGraphEvents} from '../actions/organizationInfoActions'
+import {Bar} from 'react-chartjs-2'
 
+@connect((store)=>{
+  return{
+    stats:store.organizationsInfo.stats
+  }
+})
 class Graph extends React.Component {
   constructor(props) {
     super(props)
@@ -22,13 +30,39 @@ class Graph extends React.Component {
     this.setState({
       events:this.props.events
     })
+    this.props.dispatch(fetchGraphEvents())
   }
   render(){
-    console.log(this.state.events);
-    console.log(this.props);
+    // const names=this.props.stats.name.map(names=>{
+    //   return names
+    // })
+    // const values=this.props.stats.count.map(counts=>{
+    //   return counts
+    // })
+    let names=[]
+    let count=[]
+    this.props.stats.map((stat)=>{
+      names.push(stat.name)
+      count.push(stat.count)
+    })
+    console.log(names);
+    console.log(count);
+    const data={
+      labels:names,
+      datasets:[
+        {
+          label:'GDG',
+          data:count
+        }
+      ]
+    }
     return(
       <div>
-        <h1>This is from Graph!</h1>
+        <Bar
+          data={data}
+          width={100}
+          height={50}
+        />
       </div>
     )
   }
