@@ -51,7 +51,10 @@ class Graph extends React.Component {
       labels:names,
       datasets:[
         {
-          label:'GDG',
+          label:'Recent Activity Chart',
+          backgroundColor:'rgba(54, 162, 235, 0.2)',
+          borderColor:'rgba(54, 162, 235, 1)',
+          borderWidth:1,
           data:count
         }
       ]
@@ -61,7 +64,15 @@ class Graph extends React.Component {
         <Bar
           data={data}
           width={100}
-          height={50}
+          height={100}
+          options={{scales: {
+            yAxes: [{
+                  ticks: {
+                      beginAtZero:true
+                    }
+                  }]
+                }
+            }}
         />
       </div>
     )

@@ -127,13 +127,18 @@ class OrganizationInfo extends React.Component {
           </ul>
         </div>
         <div className="row">
-          <h1 className="center">Activity</h1>
-          <ul className="col m8 push-m2 s12 card collapsible" data-collapsible="accordion">
+          <h1 className="center">Recent Activity</h1>
+          <ul className="col m5 push-m1 s12 card collapsible" data-collapsible="accordion">
             {mappedEvents}
           </ul>
+          <div className="col m5 push-m1 s12">
+            <Graph/>
+          </div>
         </div>
 
-        <Graph/>
+        <div className="row">
+
+        </div>
 
       </div>
     )
