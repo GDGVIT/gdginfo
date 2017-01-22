@@ -5,8 +5,9 @@ class Event extends React.Component {
     super(props)
     this.state={
       members:[
-        'rahulakrishna':1
+        'rahulakrishna':1,
       ],
+      activityCount:{},
       commitmessage:''
     }
   }
@@ -41,7 +42,8 @@ class Event extends React.Component {
     }
   }
   render(){
-    console.log(this.props.sentence);
+    // console.log(this.props.sentence);
+    // console.log(this.state.activityCount);
     return(
           // <li>
           //   <div class="collapsible-header">

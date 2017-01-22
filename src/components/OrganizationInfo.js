@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchInfo,getUsers,getEvents} from '../actions/organizationInfoActions'
+import {addStat} from '../actions/statsActions'
 import Graph from './Graph'
 import Event from './Event'
 
@@ -8,7 +9,8 @@ import Event from './Event'
   return{
     organizations:store.organizationsInfo.data,
     members:store.organizationsInfo.users,
-    events:store.organizationsInfo.events
+    events:store.organizationsInfo.events,
+    stats:store.stats
   }
 })
 class OrganizationInfo extends React.Component {
@@ -28,6 +30,19 @@ class OrganizationInfo extends React.Component {
     this.props.dispatch(getUsers())
     this.props.dispatch(getEvents())
     $('.collapsible').collapsible();
+    this.props.members.map(member=>{
+      this.props.dispatch(addStat(member.login))
+    })
+  }
+  graph(){
+    for (var i = 0; i < this.props.events.length; i++) {
+      console.log(this.props.events[i])
+    }
+  }
+  addStat=()=>{
+    this.props.members.map(member=>{
+      this.props.dispatch(addStat(member.login,(stats.member.login.value+1)))
+    })
   }
   render(){
     console.log('Hello World!')
@@ -56,6 +71,7 @@ class OrganizationInfo extends React.Component {
           <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
         </li>
     )
+
     const mappedEvents=events.map(event=>
       <Event key={event.id}
         crime={event.type}
