@@ -25,7 +25,7 @@ app.get('/info',function(req,res){
 })
 
 app.get('/users',function(req,res){
-axios.get('https://api.github.com/orgs/GDGVIT/membersclient_id='+process.env.client_id+'&client_secret='+process.env.client_secret)
+axios.get('https://api.github.com/orgs/GDGVIT/members?client_id='+process.env.client_id+'&client_secret='+process.env.client_secret)
 .then(function(response){
   res.send(response.data);
 }).catch(function(error){
@@ -34,7 +34,7 @@ axios.get('https://api.github.com/orgs/GDGVIT/membersclient_id='+process.env.cli
 })
 
 app.get('/events',function(req,res){
-axios.get('https://api.github.com/orgs/GDGVIT/eventsclient_id='+process.env.client_id+'&client_secret='+process.env.client_secret)
+axios.get('https://api.github.com/orgs/GDGVIT/events?client_id='+process.env.client_id+'&client_secret='+process.env.client_secret)
 .then(function(response){
 res.send(response.data);
 })
@@ -43,14 +43,8 @@ res.send(response.data);
 })
 })
 
-var stat={
-  'rahulakrishna':4,
-  'krishnasreemnon':5,
-  'jambavan':3,
-  'alkaajith':2
-}
 app.get('/eventsGraph',function(req,res){
-  axios.get('https://api.github.com/orgs/GDGVIT/events?client_id=e63b429174efcee3f453&client_secret=baf28b3b72e252c8d54180bfa0b9706e90caa33c')
+  axios.get('https://api.github.com/orgs/gdgvit/events?client_id=e63b429174efcee3f453&client_secret=baf28b3b72e252c8d54180bfa0b9706e90caa33c')
   .then(function(response){
     let uniquename=[]
     response.data.forEach(function(x){

@@ -45,9 +45,6 @@ class OrganizationInfo extends React.Component {
     })
   }
   render(){
-    console.log('Hello World!')
-    console.log(this.props.organizations)
-    console.log(this.props.stats);
     const {organizations,members,events}=this.props
     const styles={
       image:{
