@@ -134,7 +134,7 @@ class OrganizationInfo extends React.Component {
         </div>
 
         <div className="row">
-
+          <Awesome/>
         </div>
 
       </div>
