@@ -1,7 +1,7 @@
 {
-  "name": "wdyw-frontend",
+  "name": "GDG Info",
   "version": "1.0.0",
-  "description": "Get Loans, Lend Loans!",
+  "description": "Daily work information regarding GDG",
   "main": "index.js",
   "engines": {
     "node": ">=4.5.0",
@@ -98,7 +98,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vansh1sh/wdyw-frontend.git"
+    "url": "git+https://github.com/rahulakrishna/gdginfo"
   },
   "author": "Rahul A. Krishna <rahul@krisambali.com> rahulakrishna.github.io",
   "license": "MIT",
