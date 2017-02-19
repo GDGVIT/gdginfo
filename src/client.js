@@ -18,12 +18,7 @@ class App extends React.Component{
   render(){
     return(
       <div>
-        <MuiThemeProvider>
-          <AppBar
-            title="GDG VIT Stats"
-            iconElementLeft={<IconButton></IconButton>}
-          />
-        </MuiThemeProvider>
+
         {this.props.children}
       </div>
     )

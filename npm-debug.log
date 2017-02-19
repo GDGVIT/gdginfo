@@ -4,41 +4,23 @@
 1 verbose cli   'start' ]
 2 info using npm@3.3.6
 3 info using node@v5.0.0
-4 verbose run-script [ 'prestart', 'start', 'poststart' ]
-5 info lifecycle wdyw-frontend@1.0.0~prestart: wdyw-frontend@1.0.0
-6 silly lifecycle wdyw-frontend@1.0.0~prestart: no script for prestart, continuing
-7 info lifecycle wdyw-frontend@1.0.0~start: wdyw-frontend@1.0.0
-8 verbose lifecycle wdyw-frontend@1.0.0~start: unsafe-perm in lifecycle true
-9 verbose lifecycle wdyw-frontend@1.0.0~start: PATH: /home/rahul/.nvm/versions/node/v5.0.0/lib/node_modules/npm/bin/node-gyp-bin:/home/rahul/Works/gdginfo/node_modules/.bin:/opt/phantomjs/bin/phantomjs:/home/rahul/.nvm/versions/node/v5.0.0/bin:/usr/local/heroku/bin:/home/rahul/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/rahul/bin:/usr/local/java/jdk1.8.0_74/bin:/.composer/vendor/bin:/home/rahul/Android/android-sdk-linux/tools
-10 verbose lifecycle wdyw-frontend@1.0.0~start: CWD: /home/rahul/Works/gdginfo
-11 silly lifecycle wdyw-frontend@1.0.0~start: Args: [ '-c', 'better-npm-run localstart' ]
-12 silly lifecycle wdyw-frontend@1.0.0~start: Returned: code: 1  signal: null
-13 info lifecycle wdyw-frontend@1.0.0~start: Failed to exec start script
-14 verbose stack Error: wdyw-frontend@1.0.0 start: `better-npm-run localstart`
-14 verbose stack Exit status 1
-14 verbose stack     at EventEmitter.<anonymous> (/home/rahul/.nvm/versions/node/v5.0.0/lib/node_modules/npm/lib/utils/lifecycle.js:233:16)
-14 verbose stack     at emitTwo (events.js:87:13)
-14 verbose stack     at EventEmitter.emit (events.js:172:7)
-14 verbose stack     at ChildProcess.<anonymous> (/home/rahul/.nvm/versions/node/v5.0.0/lib/node_modules/npm/lib/utils/spawn.js:24:14)
-14 verbose stack     at emitTwo (events.js:87:13)
-14 verbose stack     at ChildProcess.emit (events.js:172:7)
-14 verbose stack     at maybeClose (internal/child_process.js:818:16)
-14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
-15 verbose pkgid wdyw-frontend@1.0.0
-16 verbose cwd /home/rahul/Works/gdginfo
-17 error Linux 4.8.0-34-generic
-18 error argv "/home/rahul/.nvm/versions/node/v5.0.0/bin/node" "/home/rahul/.nvm/versions/node/v5.0.0/bin/npm" "start"
-19 error node v5.0.0
-20 error npm  v3.3.6
-21 error code ELIFECYCLE
-22 error wdyw-frontend@1.0.0 start: `better-npm-run localstart`
-22 error Exit status 1
-23 error Failed at the wdyw-frontend@1.0.0 start script 'better-npm-run localstart'.
-23 error This is most likely a problem with the wdyw-frontend package,
-23 error not with npm itself.
-23 error Tell the author that this fails on your system:
-23 error     better-npm-run localstart
-23 error You can get their info via:
-23 error     npm owner ls wdyw-frontend
-23 error There is likely additional logging output above.
-24 verbose exit [ 1, true ]
+4 verbose stack Error: Invalid name: "GDG Info"
+4 verbose stack     at ensureValidName (/home/rahul/.nvm/versions/node/v5.0.0/lib/node_modules/npm/node_modules/normalize-package-data/lib/fixer.js:331:15)
+4 verbose stack     at Object.module.exports.fixNameField (/home/rahul/.nvm/versions/node/v5.0.0/lib/node_modules/npm/node_modules/normalize-package-data/lib/fixer.js:210:5)
+4 verbose stack     at /home/rahul/.nvm/versions/node/v5.0.0/lib/node_modules/npm/node_modules/normalize-package-data/lib/normalize.js:32:38
+4 verbose stack     at Array.forEach (native)
+4 verbose stack     at normalize (/home/rahul/.nvm/versions/node/v5.0.0/lib/node_modules/npm/node_modules/normalize-package-data/lib/normalize.js:31:15)
+4 verbose stack     at final (/home/rahul/.nvm/versions/node/v5.0.0/lib/node_modules/npm/node_modules/read-package-json/read-json.js:338:5)
+4 verbose stack     at then (/home/rahul/.nvm/versions/node/v5.0.0/lib/node_modules/npm/node_modules/read-package-json/read-json.js:113:5)
+4 verbose stack     at /home/rahul/.nvm/versions/node/v5.0.0/lib/node_modules/npm/node_modules/read-package-json/read-json.js:232:12
+4 verbose stack     at /home/rahul/.nvm/versions/node/v5.0.0/lib/node_modules/npm/node_modules/graceful-fs/graceful-fs.js:76:16
+4 verbose stack     at tryToString (fs.js:414:3)
+5 verbose cwd /home/rahul/Works/gdginfo
+6 error Linux 4.8.0-34-generic
+7 error argv "/home/rahul/.nvm/versions/node/v5.0.0/bin/node" "/home/rahul/.nvm/versions/node/v5.0.0/bin/npm" "start"
+8 error node v5.0.0
+9 error npm  v3.3.6
+10 error Invalid name: "GDG Info"
+11 error If you need help, you may report this error at:
+11 error     <https://github.com/npm/npm/issues>
+12 verbose exit [ 1, true ]

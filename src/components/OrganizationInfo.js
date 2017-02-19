@@ -19,7 +19,25 @@ class OrganizationInfo extends React.Component {
     this.state={
       organizations:this.props.organizations,
       members:this.props.members,
-      events:this.props.events
+      events:this.props.events,
+      first:{
+        position:'absolute',
+        top:'0px',
+        width:'100%',
+        left:'0'
+      },
+      second:{
+        position:'absolute',
+        top:'0px',
+        width:'100%',
+        left:'100%'
+      },
+      third:{
+        position:'absolute',
+        top:'0px',
+        width:'100%',
+        left:'200%'
+      }
     }
   }
   componentWillMount(){
@@ -44,6 +62,86 @@ class OrganizationInfo extends React.Component {
       this.props.dispatch(addStat(member.login,(stats.member.login.value+1)))
     })
   }
+  displayMembers=()=>{
+    const {members}=this.props
+    return members[i].login
+  }
+  prevEvent=()=>{
+    if(this.state.second.left=='0'){
+      this.setState({
+        first:{
+          position:'absolute',
+          top:'0px',
+          width:'100%',
+          left:'0',
+          transition:'all 0.5s'
+        },
+        second:{
+          position:'absolute',
+          top:'0px',
+          width:'100%',
+          left:'100%',
+          transition:'all 0.5s'
+        }
+      })
+    }
+    else if(this.state.third.left=='0'){
+      this.setState({
+        third:{
+          position:'absolute',
+          top:'0px',
+          width:'100%',
+          left:'100%',
+          transition:'all 0.5s'
+        },
+        second:{
+          position:'absolute',
+          top:'0px',
+          width:'100%',
+          left:'0',
+          transition:'all 0.5s'
+        }
+      })
+    }
+  }
+  nextEvent=()=>{
+    if(this.state.first.left=='0'){
+      this.setState({
+        first:{
+          position:'absolute',
+          top:'0px',
+          width:'100%',
+          left:'-100%',
+          transition:'all 0.5s'
+        },
+        second:{
+          position:'absolute',
+          top:'0px',
+          width:'100%',
+          left:'0',
+          transition:'all 0.5s'
+        }
+      })
+    }
+    else if(this.state.second.left=='0'){
+      this.setState({
+        second:{
+          position:'absolute',
+          top:'0px',
+          width:'100%',
+          left:'-100%',
+          transition:'all 0.5s'
+        },
+        third:{
+          position:'absolute',
+          top:'0px',
+          width:'100%',
+          left:'0',
+          transition:'all 0.5s'
+        }
+      })
+    }
+  }
   render(){
     const {organizations,members,events}=this.props
     const styles={
@@ -63,13 +161,12 @@ class OrganizationInfo extends React.Component {
       }
     }
     const mappedMembers=members.map(member=>
-        <li class="collection-item avatar col m4 s12" key={member.id} style={{marginTop:'30px'}}>
-          <img src={member.avatar_url} alt="" class="circle"/>
-          <span class="title" style={styles.collectionHeader}>{member.login}</span>
-          <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
-        </li>
+          <li class="collection-item avatar col m4 s12" key={member.id} style={{marginTop:'30px'}}>
+            <img src={member.avatar_url} alt="" class="circle"/>
+            <span class="title" style={styles.collectionHeader}>{member.login}</span>
+            <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
+          </li>
     )
-
     const mappedEvents=events.map(event=>
       <Event key={event.id}
         crime={event.type}
@@ -78,8 +175,11 @@ class OrganizationInfo extends React.Component {
         sentence={event.type=='PushEvent'?event.payload.commits:''}
       />
     )
+    const firstEvents=mappedEvents.slice(0,10);
+    const secondEvents=mappedEvents.slice(11,20);
+    const thirdEvents=mappedEvents.slice(21,30);
     console.log(events);
-    console.log(this.state.events);
+    console.log('Paginated members: ',this.displayMembers);
     return(
       <div>
         <div className="center">
@@ -117,24 +217,29 @@ class OrganizationInfo extends React.Component {
 
         {/*The List of Members to be followed*/}
         <div className="row">
-
-          <h1 className="center">Members</h1>
-          <ul className="collection col m10 push-m1 s12">
-            {mappedMembers}
-          </ul>
         </div>
         <div className="row">
           <h1 className="center">Recent Activity</h1>
-          <ul className="col m5 push-m1 s12 card collapsible" data-collapsible="accordion">
-            {mappedEvents}
-          </ul>
+
+            <ul className="col m5 push-m1 s12 card collapsible" data-collapsible="accordion" style={{overflow:'hidden',padding:'10px',height:'500'}}>
+              <div style={this.state.first}>{firstEvents}</div>
+              <div style={this.state.second}>{secondEvents}</div>
+              <div style={this.state.third}>{thirdEvents}</div>
+              <ul className="pagination center col s12" style={{position:'absolute',bottom:'10px'}}>
+                <li className="waves-effect" onClick={this.prevEvent}><i className="material-icons">chevron_left</i></li>
+                <li className="waves-effect" onClick={this.nextEvent}><i className="material-icons">chevron_right</i></li>
+              </ul>
+            </ul>
           <div className="col m5 push-m1 s12">
             <Graph/>
           </div>
         </div>
 
         <div className="row">
-
+          <h1 className="center">Members</h1>
+          <ul className="collection col m10 push-m1 s12">
+            {mappedMembers}
+          </ul>
         </div>
 
       </div>
