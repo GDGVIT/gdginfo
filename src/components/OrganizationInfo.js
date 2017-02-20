@@ -175,9 +175,9 @@ class OrganizationInfo extends React.Component {
         sentence={event.type=='PushEvent'?event.payload.commits:''}
       />
     )
-    const firstEvents=mappedEvents.slice(0,10);
-    const secondEvents=mappedEvents.slice(11,20);
-    const thirdEvents=mappedEvents.slice(21,30);
+    const firstEvents=mappedEvents.slice(0,9);
+    const secondEvents=mappedEvents.slice(10,19);
+    const thirdEvents=mappedEvents.slice(20,29);
     console.log(events);
     console.log('Paginated members: ',this.displayMembers);
     return(
@@ -220,16 +220,22 @@ class OrganizationInfo extends React.Component {
         </div>
         <div className="row">
           <h1 className="center">Recent Activity</h1>
-
-            <ul className="col m5 push-m1 s12 card collapsible" data-collapsible="accordion" style={{overflow:'hidden',padding:'10px',height:'500'}}>
-              <div style={this.state.first}>{firstEvents}</div>
-              <div style={this.state.second}>{secondEvents}</div>
-              <div style={this.state.third}>{thirdEvents}</div>
+            <div className="col s12 m5 push-m1" style={{overflow:'hidden',padding:'10px',height:'500'}}>
+            <ul className="col s12 card collapsible" data-collapsible="accordion" style={this.state.first}>
+              {firstEvents}
+            </ul>
+            <ul className="col s12 card collapsible" data-collapsible="accordion" style={this.state.second}>
+              {secondEvents}
+            </ul>
+            <ul className="col s12 card collapsible" data-collapsible="accordion" style={this.state.third}>
+              {thirdEvents}
+            </ul>
               <ul className="pagination center col s12" style={{position:'absolute',bottom:'10px'}}>
                 <li className="waves-effect" onClick={this.prevEvent}><i className="material-icons">chevron_left</i></li>
                 <li className="waves-effect" onClick={this.nextEvent}><i className="material-icons">chevron_right</i></li>
               </ul>
-            </ul>
+
+            </div>
           <div className="col m5 push-m1 s12">
             <Graph/>
           </div>
