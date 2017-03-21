@@ -2,7 +2,8 @@ const initialState={
   data:[],
   users:[],
   events:[],
-  stats:[]
+  stats:[],
+  repos:[]
 }
 
 export default function reducer(state=initialState,action){
@@ -20,6 +21,9 @@ export default function reducer(state=initialState,action){
     }
     case "FETCH_GRAPH_EVENTS_FULFILLED":{
       return {...state,stats:action.payload.data}
+    }
+    case "FETCH_REPOS_FULFILLED":{
+      return {...state,repos:action.payload.data}
     }
   }
   return state

@@ -48,7 +48,7 @@ app.get('/eventsGraph',function(req,res){
   .then(function(response){
     let uniquename=[]
     response.data.forEach(function(x){
-      if(uniquename.indexOf(x.actor.login)<0){
+      if(uniquename.indexOf(x.actor.login)<0 && x.type!='WatchEvent'){
         uniquename.push(x.actor.login)
       }
     })
@@ -56,7 +56,7 @@ app.get('/eventsGraph',function(req,res){
     uniquename.forEach(function(name){
       let count=0
       response.data.forEach(function(data){
-        if(data.actor.login==name){
+        if(data.actor.login==name && data.type!='WatchEvent'){
           count=count+1
         }
       })
@@ -69,6 +69,16 @@ app.get('/eventsGraph',function(req,res){
     res.send(result)
   })
   .catch(function(error){
+    console.error(error);
+  })
+})
+
+app.get('/repos',function(req,res){
+  axios.get('https://api.github.com/orgs/gdgvit/repos?client_id=e63b429174efcee3f453&client_secret=baf28b3b72e252c8d54180bfa0b9706e90caa33c')
+  .then((response)=>{
+    res.send(response.data);
+  })
+  .catch((error)=>{
     console.error(error);
   })
 })

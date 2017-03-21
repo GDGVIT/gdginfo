@@ -40,3 +40,13 @@ export function fetchGraphEvents(){
     })
   }
 }
+
+export function fetchRepos(){
+  return{
+    type:'FETCH_REPOS',
+    payload:axios({
+      method:'get',
+      url:'/repos'
+    })
+  }
+}

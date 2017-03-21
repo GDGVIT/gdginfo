@@ -1,16 +1,19 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchInfo,getUsers,getEvents} from '../actions/organizationInfoActions'
+import {fetchInfo,getUsers,getEvents,fetchRepos} from '../actions/organizationInfoActions'
 import {addStat} from '../actions/statsActions'
 import Graph from './Graph'
 import Event from './Event'
+import Repo from './Repo'
+import Members from './Members'
 
 @connect((store)=>{
   return{
     organizations:store.organizationsInfo.data,
     members:store.organizationsInfo.users,
     events:store.organizationsInfo.events,
-    stats:store.organizationsInfo.stats
+    stats:store.organizationsInfo.stats,
+    repos:store.organizationsInfo.repos
   }
 })
 class OrganizationInfo extends React.Component {
@@ -47,6 +50,7 @@ class OrganizationInfo extends React.Component {
     this.props.dispatch(fetchInfo())
     this.props.dispatch(getUsers())
     this.props.dispatch(getEvents())
+    this.props.dispatch(fetchRepos())
     $('.collapsible').collapsible();
     this.props.members.map(member=>{
       this.props.dispatch(addStat(member.login))
@@ -143,7 +147,7 @@ class OrganizationInfo extends React.Component {
     }
   }
   render(){
-    const {organizations,members,events}=this.props
+    const {organizations,members,events,repos}=this.props
     const styles={
       image:{
         width:'200px'
@@ -156,12 +160,12 @@ class OrganizationInfo extends React.Component {
         width:'100%'
       },
       collectionHeader:{
-        fontSize:'24px',
-        marginTop:'50px'
+        fontSize:'16px',
+        marginTop:'150px'
       }
     }
     const mappedMembers=members.map(member=>
-          <li class="collection-item avatar col m4 s12" key={member.id} style={{marginTop:'30px'}}>
+          <li class="collection-item avatar col m2 s12" key={member.id} style={{marginTop:'30px'}}>
             <img src={member.avatar_url} alt="" class="circle"/>
             <span class="title" style={styles.collectionHeader}>{member.login}</span>
             <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
@@ -220,7 +224,7 @@ class OrganizationInfo extends React.Component {
         </div>
         <div className="row">
           <h1 className="center">Recent Activity</h1>
-            <div className="col s12 m5 push-m1" style={{overflow:'hidden',padding:'10px',height:'500'}}>
+            <div className="col s12 m5 push-m1 events" style={{overflow:'hidden',padding:'10px', height:'500'}}>
             <ul className="col s12 card collapsible" data-collapsible="accordion" style={this.state.first}>
               {firstEvents}
             </ul>
@@ -240,14 +244,17 @@ class OrganizationInfo extends React.Component {
             <Graph/>
           </div>
         </div>
-
+        <div className="col s12">
+          <Repo repos={repos}/>
+        </div>
         <div className="row">
-          <h1 className="center">Members</h1>
+          <h1 className="center">The Team</h1>
           <ul className="collection col m10 push-m1 s12">
             {mappedMembers}
           </ul>
         </div>
 
+        <Members/>
       </div>
     )
   }
