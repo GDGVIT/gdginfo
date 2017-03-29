@@ -7,8 +7,11 @@ const webpackConfig = require('../config/webpack.config')
 const project = require('../config/project.config')
 const compress = require('compression')
 const axios=require('axios')
+const cors=require('cors')
 
 const app = express()
+
+app.use(cors())
 
 require('dotenv').config()
 
