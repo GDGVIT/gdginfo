@@ -28,21 +28,29 @@ class Event extends React.Component {
       case 'CreateEvent':
         return 'created'
         break
+      case 'IssueEvent':
+        return 'closed issue in'
+        break
       default:
         return code
         break
     }
   }
-  commitMessage=(sentence,culprit,crime,scene)=>{
+  commitMessage=(parole,sentence,culprit,crime,scene)=>{
     if(sentence){
+      console.log(sentence);
       return '<div class="collapsible-header"><i class="material-icons">filter_drama</i>'+culprit+' '+crime+' '+scene+'</div><div class="collapsible-body">'+sentence.map(s=>s.message)+'</div>'
+    }
+    else if(parole){
+      console.log(parole);
+      return '<div class="collapsible-header"><i class="material-icons">filter_drama</i>'+culprit+' '+parole+' issue in  '+scene+'</div>'
     }
     else {
       return '<div class="collapsible-header"><i class="material-icons">filter_drama</i>'+culprit+' '+crime+' '+scene+'</div>'
     }
   }
   render(){
-    // console.log(this.props.sentence);
+    console.log(this.props);
     // console.log(this.state.activityCount);
     return(
           // <li>
@@ -52,7 +60,7 @@ class Event extends React.Component {
           //   </div>
           //   <span dangerouslySetInnerHTML={{__html:this.commitMessage(this.props.sentence)}}></span>
           // </li>
-          <li dangerouslySetInnerHTML={{__html:this.commitMessage(this.props.sentence,this.props.culprit,this.deducedCrime(this.props.crime),this.props.crimescene)}}>
+          <li dangerouslySetInnerHTML={{__html:this.commitMessage(this.props.parole,this.props.sentence,this.props.culprit,this.deducedCrime(this.props.crime),this.props.crimescene)}}>
 
           </li>
     )

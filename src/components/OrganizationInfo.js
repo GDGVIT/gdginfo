@@ -178,6 +178,7 @@ class OrganizationInfo extends React.Component {
         culprit={event.actor.login}
         crimescene={event.repo.name}
         sentence={event.type=='PushEvent'?event.payload.commits:''}
+        parole={event.type=='IssuesEvent'?event.payload.action:''}
       />
     )
     const firstEvents=mappedEvents.slice(0,9);
