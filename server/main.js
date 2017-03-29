@@ -10,7 +10,7 @@ const axios=require('axios')
 const cors=require('cors')
 
 const app = express()
-
+//Enabling CORS
 app.use(cors())
 
 require('dotenv').config()
