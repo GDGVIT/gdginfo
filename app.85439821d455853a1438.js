@@ -19329,7 +19329,8 @@ webpackJsonp([0],[
 	          crime: event.type,
 	          culprit: event.actor.login,
 	          crimescene: event.repo.name,
-	          sentence: event.type == 'PushEvent' ? event.payload.commits : ''
+	          sentence: event.type == 'PushEvent' ? event.payload.commits : '',
+	          parole: event.type == 'IssuesEvent' ? event.payload.action : ''
 	        });
 	      });
 	      var firstEvents = mappedEvents.slice(0, 9);
@@ -49953,17 +49954,24 @@ webpackJsonp([0],[
 	        case 'CreateEvent':
 	          return 'created';
 	          break;
+	        case 'IssueEvent':
+	          return 'closed issue in';
+	          break;
 	        default:
 	          return code;
 	          break;
 	      }
 	    };
 	
-	    _this.commitMessage = function (sentence, culprit, crime, scene) {
+	    _this.commitMessage = function (parole, sentence, culprit, crime, scene) {
 	      if (sentence) {
+	        console.log(sentence);
 	        return '<div class="collapsible-header"><i class="material-icons">filter_drama</i>' + culprit + ' ' + crime + ' ' + scene + '</div><div class="collapsible-body">' + sentence.map(function (s) {
 	          return s.message;
 	        }) + '</div>';
+	      } else if (parole) {
+	        console.log(parole);
+	        return '<div class="collapsible-header"><i class="material-icons">filter_drama</i>' + culprit + ' ' + parole + ' issue in  ' + scene + '</div>';
 	      } else {
 	        return '<div class="collapsible-header"><i class="material-icons">filter_drama</i>' + culprit + ' ' + crime + ' ' + scene + '</div>';
 	      }
@@ -49980,7 +49988,7 @@ webpackJsonp([0],[
 	  (0, _createClass3.default)(Event, [{
 	    key: 'render',
 	    value: function render() {
-	      // console.log(this.props.sentence);
+	      console.log(this.props);
 	      // console.log(this.state.activityCount);
 	      return (
 	        // <li>
@@ -49990,7 +49998,7 @@ webpackJsonp([0],[
 	        //   </div>
 	        //   <span dangerouslySetInnerHTML={{__html:this.commitMessage(this.props.sentence)}}></span>
 	        // </li>
-	        _react2.default.createElement('li', { dangerouslySetInnerHTML: { __html: this.commitMessage(this.props.sentence, this.props.culprit, this.deducedCrime(this.props.crime), this.props.crimescene) } })
+	        _react2.default.createElement('li', { dangerouslySetInnerHTML: { __html: this.commitMessage(this.props.parole, this.props.sentence, this.props.culprit, this.deducedCrime(this.props.crime), this.props.crimescene) } })
 	      );
 	    }
 	  }]);
@@ -64877,4 +64885,4 @@ webpackJsonp([0],[
 
 /***/ }
 ]);
-//# sourceMappingURL=app.57c8c41bb83202a856e9.js.map
+//# sourceMappingURL=app.85439821d455853a1438.js.map
