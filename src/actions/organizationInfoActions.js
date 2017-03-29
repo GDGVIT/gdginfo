@@ -5,7 +5,7 @@ export function fetchInfo(){
     type:'FETCH_APP_INFO',
     payload:axios({
       method:'get',
-      url:'/info'
+      url:'https://gdginfo.herokuapp.com/info'
     })
   }
 }
@@ -15,7 +15,7 @@ export function getUsers(){
     type:'FETCH_USERS',
     payload:axios({
       method:'get',
-      url:'/users'
+      url:'https://gdginfo.herokuapp.com/users'
     })
   }
 }
@@ -26,7 +26,7 @@ export function getEvents(){
     type:'FETCH_EVENTS',
     payload:axios({
       method:'get',
-      url:'/events'
+      url:'https://gdginfo.herokuapp.com/events'
     })
   }
 }
@@ -36,7 +36,7 @@ export function fetchGraphEvents(){
     type:'FETCH_GRAPH_EVENTS',
     payload:axios({
       method:'get',
-      url:'/eventsGraph'
+      url:'https://gdginfo.herokuapp.com/eventsGraph'
     })
   }
 }
@@ -46,7 +46,7 @@ export function fetchRepos(){
     type:'FETCH_REPOS',
     payload:axios({
       method:'get',
-      url:'/repos'
+      url:'https://gdginfo.herokuapp.com/repos'
     })
   }
 }

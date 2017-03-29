@@ -6,6 +6,7 @@ import Graph from './Graph'
 import Event from './Event'
 import Repo from './Repo'
 import Members from './Members'
+import '../styles/Main.scss'
 
 @connect((store)=>{
   return{
@@ -187,12 +188,12 @@ class OrganizationInfo extends React.Component {
     return(
       <div>
         <div className="center">
-          <img src={organizations.avatar_url} style={styles.image} className="circle"/>
+          {/* <img src={organizations.avatar_url} style={styles.image} className="circle"/> */}
           <br/>
           <h3>{organizations.description}</h3>
           <h4>{organizations.location}</h4>
         </div>
-        <div className="row center">
+        <div className="row center info-cards">
           <div className="col m3 s12">
           <div className="card" style={styles.descriptionCard}>
             <div className="card-title">{organizations.public_repos}</div>

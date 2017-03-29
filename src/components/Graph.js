@@ -52,8 +52,8 @@ class Graph extends React.Component {
       datasets:[
         {
           label:'Recent Activity Chart',
-          backgroundColor:'rgba(76,175,50,0.5)',
-          borderColor:'rgba(54, 162, 235, 1)',
+          backgroundColor:'#17AE9D',
+          borderColor:'#17AE9D',
           borderWidth:1,
           data:count
         }

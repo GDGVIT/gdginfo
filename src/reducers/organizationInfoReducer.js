@@ -9,7 +9,7 @@ const initialState={
 export default function reducer(state=initialState,action){
   switch (action.type) {
     case "FETCH_APP_INFO_FULFILLED":{
-      return {...state,data:action.payload.data}
+      return {...state,data:action.payload.data }
     }
     break
     case "FETCH_USERS_FULFILLED":{
