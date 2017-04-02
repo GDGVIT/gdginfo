@@ -3,7 +3,8 @@ const initialState={
   users:[],
   events:[],
   stats:[],
-  repos:[]
+  repos:[],
+  leaderboard:[]
 }
 
 export default function reducer(state=initialState,action){
@@ -24,6 +25,9 @@ export default function reducer(state=initialState,action){
     }
     case "FETCH_REPOS_FULFILLED":{
       return {...state,repos:action.payload.data}
+    }
+    case "FETCH_LEADERBOARD_FULFILLED":{
+      return {...state,leaderboard:action.payload.data}
     }
   }
   return state

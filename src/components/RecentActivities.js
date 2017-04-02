@@ -39,7 +39,7 @@ class RecentActivities extends React.Component {
                                 <h4 class="title">Recent Activities</h4>
                                 <p class="category">From GitHub</p>
                             </div>
-                            <div class="content">
+                            <div class="content table-responsive">
                               <table className="table table-bordered table-stripped">
                                 <tbody>
                                   {mappedEvents}
