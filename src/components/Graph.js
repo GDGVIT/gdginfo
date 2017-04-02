@@ -64,7 +64,7 @@ class Graph extends React.Component {
         <Bar
           data={data}
           width={100}
-          height={100}
+          height={50}
           options={{scales: {
             yAxes: [{
                   ticks: {

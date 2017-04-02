@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchInfo,getUsers,getEvents,fetchRepos} from '../actions/organizationInfoActions'
-import {addStat} from '../actions/statsActions'
 import Graph from './Graph'
 import Event from './Event'
 import Repo from './Repo'
@@ -23,25 +22,7 @@ class OrganizationInfo extends React.Component {
     this.state={
       organizations:this.props.organizations,
       members:this.props.members,
-      events:this.props.events,
-      first:{
-        position:'absolute',
-        top:'0px',
-        width:'100%',
-        left:'0'
-      },
-      second:{
-        position:'absolute',
-        top:'0px',
-        width:'100%',
-        left:'100%'
-      },
-      third:{
-        position:'absolute',
-        top:'0px',
-        width:'100%',
-        left:'200%'
-      }
+      events:this.props.events
     }
   }
   componentWillMount(){
@@ -52,123 +33,22 @@ class OrganizationInfo extends React.Component {
     this.props.dispatch(getUsers())
     this.props.dispatch(getEvents())
     this.props.dispatch(fetchRepos())
-    $('.collapsible').collapsible();
-    this.props.members.map(member=>{
-      this.props.dispatch(addStat(member.login))
-    })
   }
   graph(){
     for (var i = 0; i < this.props.events.length; i++) {
       console.log(this.props.events[i])
     }
-  }
-  addStat=()=>{
-    this.props.members.map(member=>{
-      this.props.dispatch(addStat(member.login,(stats.member.login.value+1)))
-    })
-  }
+    }
   displayMembers=()=>{
     const {members}=this.props
     return members[i].login
   }
-  prevEvent=()=>{
-    if(this.state.second.left=='0'){
-      this.setState({
-        first:{
-          position:'absolute',
-          top:'0px',
-          width:'100%',
-          left:'0',
-          transition:'all 0.5s'
-        },
-        second:{
-          position:'absolute',
-          top:'0px',
-          width:'100%',
-          left:'100%',
-          transition:'all 0.5s'
-        }
-      })
-    }
-    else if(this.state.third.left=='0'){
-      this.setState({
-        third:{
-          position:'absolute',
-          top:'0px',
-          width:'100%',
-          left:'100%',
-          transition:'all 0.5s'
-        },
-        second:{
-          position:'absolute',
-          top:'0px',
-          width:'100%',
-          left:'0',
-          transition:'all 0.5s'
-        }
-      })
-    }
-  }
-  nextEvent=()=>{
-    if(this.state.first.left=='0'){
-      this.setState({
-        first:{
-          position:'absolute',
-          top:'0px',
-          width:'100%',
-          left:'-100%',
-          transition:'all 0.5s'
-        },
-        second:{
-          position:'absolute',
-          top:'0px',
-          width:'100%',
-          left:'0',
-          transition:'all 0.5s'
-        }
-      })
-    }
-    else if(this.state.second.left=='0'){
-      this.setState({
-        second:{
-          position:'absolute',
-          top:'0px',
-          width:'100%',
-          left:'-100%',
-          transition:'all 0.5s'
-        },
-        third:{
-          position:'absolute',
-          top:'0px',
-          width:'100%',
-          left:'0',
-          transition:'all 0.5s'
-        }
-      })
-    }
-  }
   render(){
     const {organizations,members,events,repos}=this.props
-    const styles={
-      image:{
-        width:'200px'
-      },
-      descriptionCard:{
-        height:'120px'
-      },
-      customCardTitle:{
-        background:'rgba(0,0,0,0.5)',
-        width:'100%'
-      },
-      collectionHeader:{
-        fontSize:'16px',
-        marginTop:'150px'
-      }
-    }
     const mappedMembers=members.map(member=>
           <li class="collection-item avatar col m2 s12" key={member.id} style={{marginTop:'30px'}}>
             <img src={member.avatar_url} alt="" class="circle"/>
-            <span class="title" style={styles.collectionHeader}>{member.login}</span>
+            <span class="title">{member.login}</span>
             <a href="#!" class="secondary-content"><i class="material-icons"></i></a>
           </li>
     )
@@ -187,76 +67,104 @@ class OrganizationInfo extends React.Component {
     console.log(events);
     console.log('Paginated members: ',this.displayMembers);
     return(
-      <div>
-        <div className="center">
-          {/* <img src={organizations.avatar_url} style={styles.image} className="circle"/> */}
-          <br/>
-          <h3>{organizations.description}</h3>
-          <h4>{organizations.location}</h4>
-        </div>
-        <div className="row center info-cards">
-          <div className="col m3 s12">
-          <div className="card" style={styles.descriptionCard}>
-            <div className="card-title">{organizations.public_repos}</div>
-            <div className="card-content">Public Repos</div>
-          </div>
-        </div>
-          <div className="col m3 s12">
-          <div className="card" style={styles.descriptionCard}>
-            <div className="card-title">{organizations.public_gists}</div>
-            <div className="card-content">Public Gists</div>
-          </div>
-        </div>
-          <div className="col m3 s12">
-          <div className="card" style={styles.descriptionCard}>
-            <div className="card-title" style={{fontSize:'20px'}}>{organizations.blog}</div>
-            <div className="card-content">Website</div>
-          </div>
-        </div>
-          <div className="col m3 s12">
-          <div className="card" style={styles.descriptionCard}>
-            <div className="card-title" style={{fontSize:'20px'}}>{organizations.email}</div>
-            <div className="card-content">Email</div>
-          </div>
-        </div>
-        </div>
+      <div className="container-fluid">
 
-        {/*The List of Members to be followed*/}
-        <div className="row">
-        </div>
-        <div className="row">
-          <h1 className="center">Recent Activity</h1>
-            <div className="col s12 m5 push-m1 events" style={{overflow:'hidden',padding:'10px', height:'500'}}>
-            <ul className="col s12 card collapsible" data-collapsible="accordion" style={this.state.first}>
-              {firstEvents}
-            </ul>
-            <ul className="col s12 card collapsible" data-collapsible="accordion" style={this.state.second}>
-              {secondEvents}
-            </ul>
-            <ul className="col s12 card collapsible" data-collapsible="accordion" style={this.state.third}>
-              {thirdEvents}
-            </ul>
-              <ul className="pagination center col s12" style={{position:'absolute',bottom:'10px'}}>
-                <li className="waves-effect" onClick={this.prevEvent}><i className="material-icons">chevron_left</i></li>
-                <li className="waves-effect" onClick={this.nextEvent}><i className="material-icons">chevron_right</i></li>
-              </ul>
-
-            </div>
-          <div className="col m5 push-m1 s12">
-            <Graph/>
-          </div>
-        </div>
-        <div className="col s12">
-          <Repo repos={repos}/>
-        </div>
-        <div className="row">
+        {/*<div className="row">
           <h1 className="center">The Team</h1>
           <ul className="collection col m10 push-m1 s12">
             {mappedMembers}
           </ul>
-        </div>
+        </div>*/}
 
-        <Members/>
+        {/*<Members/>*/}
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                      <div class="col-md-4">
+                          <div class="card glance-card">
+                              <div class="header">
+                                  <h4 class="title">At a Glance</h4>
+                                  <p class="category">From GitHub</p>
+                              </div>
+                              <div class="content">
+                                  <div className="col-xs-12 info-cards">
+                                    <b><u>Public Repos</u></b><br/>
+                                    {organizations.public_repos}<br/><br/>
+                                  </div>
+                                  <div className="col-xs-12 info-cards">
+                                    <b><u>Public Gists: </u></b><br/>
+                                    {organizations.public_gists}<br/><br/>
+                                  </div>
+                                  <div className="col-xs-12 info-cards">
+                                    <b><u>Website: </u></b><br/>
+                                    {organizations.blog}<br/><br/>
+                                  </div>
+                                  <div className="col-xs-12 info-cards">
+                                    <b><u>Email: </u></b><br/>
+                                    {organizations.email}<br/><br/>
+                                  </div>
+                              </div>
+                              </div>
+                                  <div class="footer">
+                                  </div>
+                              </div>
+
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">User Performance</h4>
+                                <p class="category">Based on the last 30 events</p>
+                            </div>
+                            <div class="content">
+                                <div>
+                                  <Graph events={events}/>
+                                </div>
+                                <div class="footer">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                {/* <div class="row">
+                    <div class="col-md-6">
+                        <div class="card ">
+                            <div class="header">
+                                <h4 class="title">Key People</h4>
+                                <p class="category">Those who make it happen</p>
+                            </div>
+                            <div class="content">
+
+
+                                <div class="footer">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card ">
+                            <div class="header">
+                                <h4 class="title">Key Projects</h4>
+                                <p class="category">The flagships</p>
+                            </div>
+                            <div class="content">
+
+
+                                <div class="footer">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> */}
+            </div>
+        </div>
       </div>
     )
   }

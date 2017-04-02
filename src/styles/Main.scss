@@ -3,7 +3,12 @@
 }
 .card{
   background-color: #293a46;
-
+  color:#fff;
+  .header{
+    .title{
+      color: #fff;
+    }
+  }
 }
 .collapsible{
   background-color: #293a46;
@@ -40,4 +45,14 @@
       background:#F0AD4E;
     }
   }
+}
+
+.main-panel{
+  .content{
+    padding:35px;
+  }
+}
+
+.glance-card{
+  min-height: 60vh;
 }

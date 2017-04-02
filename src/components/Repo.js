@@ -15,3 +15,5 @@ class Repo extends React.Component {
 }
 
 export default Repo
+
+{/* <Repo repos={repos}/> */}

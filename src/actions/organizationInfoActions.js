@@ -5,7 +5,10 @@ export function fetchInfo(){
     type:'FETCH_APP_INFO',
     payload:axios({
       method:'get',
-      url:'https://gdginfo.herokuapp.com/info'
+      url:'http://127.0.0.1:3000/info',
+      headers:{
+        'Access-Control-Allow-Origin':'*'
+      }
     })
   }
 }
@@ -15,7 +18,10 @@ export function getUsers(){
     type:'FETCH_USERS',
     payload:axios({
       method:'get',
-      url:'https://gdginfo.herokuapp.com/users'
+      url:'http://127.0.0.1:3000/users',
+      headers:{
+        'Access-Control-Allow-Origin':'*'
+      }
     })
   }
 }
@@ -26,7 +32,10 @@ export function getEvents(){
     type:'FETCH_EVENTS',
     payload:axios({
       method:'get',
-      url:'https://gdginfo.herokuapp.com/events'
+      url:'http://127.0.0.1:3000/events',
+      headers:{
+        'Access-Control-Allow-Origin':'*'
+      }
     })
   }
 }
@@ -36,7 +45,10 @@ export function fetchGraphEvents(){
     type:'FETCH_GRAPH_EVENTS',
     payload:axios({
       method:'get',
-      url:'https://gdginfo.herokuapp.com/eventsGraph'
+      url:'http://127.0.0.1:3000/eventsGraph',
+      headers:{
+        'Access-Control-Allow-Origin':'*'
+      }
     })
   }
 }
@@ -46,7 +58,10 @@ export function fetchRepos(){
     type:'FETCH_REPOS',
     payload:axios({
       method:'get',
-      url:'https://gdginfo.herokuapp.com/repos'
+      url:'http://127.0.0.1:3000/repos',
+      headers:{
+        'Access-Control-Allow-Origin':'*'
+      }
     })
   }
 }
