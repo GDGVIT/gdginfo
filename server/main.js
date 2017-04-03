@@ -86,6 +86,21 @@ app.get('/repos',function(req,res){
   })
 })
 
+app.get('/leaderboard',(req,res)=>{
+  axios.get('https://radiant-harbor-42641.herokuapp.com/leaderboard')
+  .then((response)=>{
+
+    let result=[]
+    Object.keys(response.data.payload).map((key)=>{
+      result.push({name:key,score:response.data.payload[key]})
+    })
+    res.send(result)
+  })
+  .catch((error)=>{
+    console.error(error)
+  })
+})
+
 // Apply gzip compression
 app.use(compress())
 

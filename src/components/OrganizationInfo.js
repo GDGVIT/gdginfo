@@ -45,6 +45,7 @@ class OrganizationInfo extends React.Component {
   }
   render(){
     const {organizations,members,events,repos}=this.props
+    console.log(members)
     const mappedMembers=members.map(member=>
           <li class="collection-item avatar col m2 s12" key={member.id} style={{marginTop:'30px'}}>
             <img src={member.avatar_url} alt="" class="circle"/>

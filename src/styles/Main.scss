@@ -48,11 +48,36 @@
 }
 
 .main-panel{
-  .content{
-    padding:35px;
+  @media(min-width:600px){
+    .content{
+      padding:35px;
+    }
   }
 }
 
 .glance-card{
   min-height: 60vh;
+}
+
+.leader-card{
+   background-color: #fff;
+  color:#000;
+  .header{
+    .title{
+      color: #000;
+    }
+  }
+  .table{
+    color:#000;
+  }
+}
+
+.leader-card .table tbody td:first-child, .leader-card .table thead th:first-child {
+  color:#000;
+}
+
+
+
+.leader-card .table tbody td:last-child, .leader-card .table thead th:last-child{
+  color:#000;
 }

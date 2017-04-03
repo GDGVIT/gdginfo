@@ -71,7 +71,7 @@ export function fetchLeaderboard(){
     type:'FETCH_LEADERBOARD',
     payload:axios({
       method:'get',
-      url:'https://radiant-harbor-42641.herokuapp.com/leaderboard',
+      url:'/leaderboard',
       headers:{
         'Access-Control-Allow-Origin':'*'
       }
