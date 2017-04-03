@@ -84,7 +84,7 @@ export function fetchTopPlayers(){
     type:'FETCH_TOP_PLAYERS',
     payload:axios({
       method:'get',
-      url:'/top',
+      url:'https://gdginfo.herokuapp.com/top',
       headers:{
         'Access-Control-Allow-Origin':'*'
       }
