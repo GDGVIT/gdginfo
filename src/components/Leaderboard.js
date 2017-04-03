@@ -106,7 +106,7 @@ class Leaderboard extends React.Component{
         console.log(mappedLeaders)
         return(
             <div class="content">
-          <div class="container-fluid">
+            <div class="container-fluid">
               <div class="row">
                     <div class="col-md-12">
                         <div class="card leader-card">

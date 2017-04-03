@@ -71,7 +71,20 @@ export function fetchLeaderboard(){
     type:'FETCH_LEADERBOARD',
     payload:axios({
       method:'get',
-      url:'/leaderboard',
+      url:'https://gdginfo.herokuapp.com/leaderboard',
+      headers:{
+        'Access-Control-Allow-Origin':'*'
+      }
+    })
+  }
+}
+
+export function fetchTopPlayers(){
+  return{
+    type:'FETCH_TOP_PLAYERS',
+    payload:axios({
+      method:'get',
+      url:'/top',
       headers:{
         'Access-Control-Allow-Origin':'*'
       }

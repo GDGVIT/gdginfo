@@ -4,7 +4,8 @@ const initialState={
   events:[],
   stats:[],
   repos:[],
-  leaderboard:[]
+  leaderboard:[],
+  topplayers:[]
 }
 
 export default function reducer(state=initialState,action){
@@ -28,6 +29,9 @@ export default function reducer(state=initialState,action){
     }
     case "FETCH_LEADERBOARD_FULFILLED":{
       return {...state,leaderboard:action.payload.data}
+    }
+    case "FETCH_TOP_PLAYERS_FULFILLED":{
+      return {...state,topplayers:action.payload.data}
     }
   }
   return state
