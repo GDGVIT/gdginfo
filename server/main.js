@@ -106,20 +106,21 @@ app.get('/top',(req,res)=>{
   axios.get('https://radiant-harbor-42641.herokuapp.com/topcontributors')
   .then((response)=>{
     let result=[]
-    Object.keys(response.data.payload).map((key)=>{
-      unirest.get('https://api.github.com/repos/GDGVIT/'+key+'?client_id=e63b429174efcee3f453&client_secret=baf28b3b72e252c8d54180bfa0b9706e90caa33c')
+    let keys = Object.keys(response.data.payload)
+    let request = (key) => {
+        return new Promise((resolve, reject) => {
+           unirest.get('https://api.github.com/repos/GDGVIT/'+key+'?client_id=e63b429174efcee3f453&client_secret=baf28b3b72e252c8d54180bfa0b9706e90caa33c')
       .headers({'User-Agent':'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0'})
       .end((resp)=>{
-        result.push({repo:key,top:response.data.payload[key],desc:resp.body.description})
-        console.log(result)
+        resolve({repo:key,top:response.data.payload[key],desc:resp.body.description})
       })
+     })
+    }
+    Promise.all(keys.map(x => request(x)))
+      .then((result) => {
+        res.send(result)
+    
     })
-    console.log(result)
-    res.send(result)
-  })
-  .catch((error)=>{
-    console.error(error)
-  })
 })
 
 // Apply gzip compression
