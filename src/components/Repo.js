@@ -11,6 +11,12 @@ class Repo extends React.Component {
   componentDidMount(){
     this.props.dispatch(fetchTopPlayers())
   }
+  sortByName(){
+    return null
+  }
+  sortByRepo(){
+    return null
+  }
   render(){
     const {topplayers}=this.props
     let playerList=[]

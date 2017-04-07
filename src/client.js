@@ -31,7 +31,7 @@ class App extends React.Component{
     return(
       <div>
         <div class="wrapper">
-        <div class="sidebar" data-color="green" data-image="assets/img/sidebar-4.jpg">
+        <div class="sidebar" data-color="green" data-image="assets/img/sidebar-3.jpg">
     <div class="sidebar-wrapper">
         <div class="logo">
             <a href="http://www.gdgvitvellore.com" class="simple-text">
