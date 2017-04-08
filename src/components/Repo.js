@@ -11,12 +11,35 @@ class Repo extends React.Component {
   componentDidMount(){
     this.props.dispatch(fetchTopPlayers())
   }
+  sortByName(){
+    return null
+  }
+  sortByRepo(){
+    return null
+  }
   render(){
-    console.log(this.props.topplayers)
     const {topplayers}=this.props
+    let playerList=[]
+    topplayers.forEach((player)=>{
+      if(playerList.indexOf(player.top)<0){
+        playerList.push({name:player.top})
+      }
+    })
+    let playerCountList=[]
+    playerList.forEach((player)=>{
+      let count=0
+      topplayers.forEach((top)=>{
+        if(player.name==top.top){
+          count=count+1
+        }
+      })
+      playerCountList.push({name:player.name,count:count})
+    })
+    let finalList=[]
+    console.log(topplayers)
     const sortedPlayers=topplayers.sort((a,b)=>{
-      const nameA=a.repo.toUpperCase()
-      const nameB=b.repo.toUpperCase()
+      const nameA=a.top.toUpperCase()
+      const nameB=b.top.toUpperCase()
       if(nameA<nameB){
         return -1
       }
@@ -25,8 +48,35 @@ class Repo extends React.Component {
       }
       return 0
     })
-    const mappedRepos=sortedPlayers.map((player)=>
-      <tr key={player.repo}><td>{player.repo}</td><td>{player.top}</td></tr>
+    let reposCounted=[]
+    sortedPlayers.forEach((repo)=>{
+      playerCountList.forEach((player)=>{
+        if(player.name==repo.top && reposCounted.indexOf(repo.repo)<0){
+          finalList.push({name:player.name,repo:repo.repo,count:player.count})
+          reposCounted.push(repo.repo)
+        }
+      })
+    })
+    console.log(finalList)
+    const finalSortedList=finalList.sort((a,b)=>{
+      console.log(a.name,b.name,b.count-a.count)
+      if(a.count!=b.count){
+        return b.count-a.count
+      }
+      else{
+        const nameA=a.name.toUpperCase()
+      const nameB=b.name.toUpperCase()
+      if(nameA<nameB){
+        return -1
+      }
+      else if(nameA>nameB){
+        return 1
+      }
+    }
+    return 0
+    })
+    const mappedRepos=finalSortedList.map((player)=>
+      <tr key={player.repo}><td>{player.repo}</td><td>{player.name}</td></tr>
     )
     return(
       <div>

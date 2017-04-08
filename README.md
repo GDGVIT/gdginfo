@@ -8,12 +8,13 @@
 + Webpack
 
 # To run
-Either go to https://gdginfo.herokuapp.com/
+Before running create a `.env` file containing `client_secret=xxxx cliend_id=xxxxxx` using the values obtained from GitHub.
+
+Either go to https://info.gdgvitvellore.com/
 
 or clone the repo and run `npm install` && `npm start`
 
 # File description
-
 The server is configured in `/server/main.js`.
 
 All the frontend files are located in `/src/`
@@ -21,5 +22,7 @@ All the frontend files are located in `/src/`
 + `/src/components/OrganizationInfo.js` - This is the root component. All the other render into it.
 + `/src/components/Event.js` - Renders a list of the past 30 events from GitHub
 + `/src/components/Graph.js` - Renders the graph.
-+ `/src/components/Repo.js` - A page for every repo. Must contain all the basic information including the most active person.
-+ `/src/components/User.js` - A page for every user. Must contain his/her contribution to the organization.
++ `/src/components/Repo.js` -  Contains all the basic information including the most active person.
++ `/src/components/Leaderboard.js` - A Leaderboard based on the weekly activity of members
+
+# Screenshots

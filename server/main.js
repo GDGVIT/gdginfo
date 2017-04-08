@@ -8,6 +8,8 @@ const project = require('../config/project.config')
 const compress = require('compression')
 const axios=require('axios')
 const cors=require('cors')
+const unirest=require('unirest')
+
 
 const app = express()
 //Enabling CORS
@@ -47,7 +49,7 @@ res.send(response.data);
 })
 
 app.get('/eventsGraph',function(req,res){
-  axios.get('https://api.github.com/orgs/gdgvit/events?client_id=e63b429174efcee3f453&client_secret=baf28b3b72e252c8d54180bfa0b9706e90caa33c')
+  axios.get('https://api.github.com/orgs/gdgvit/events?client_id='+process.env.client_id+'&client_secret='+process.env.client_secret)
   .then(function(response){
     let uniquename=[]
     response.data.forEach(function(x){
@@ -77,7 +79,7 @@ app.get('/eventsGraph',function(req,res){
 })
 
 app.get('/repos',function(req,res){
-  axios.get('https://api.github.com/orgs/gdgvit/repos?client_id=e63b429174efcee3f453&client_secret=baf28b3b72e252c8d54180bfa0b9706e90caa33c')
+  axios.get('https://api.github.com/orgs/gdgvit/repos?client_id='+process.env.client_id+'&client_secret='+process.env.client_secret)
   .then((response)=>{
     res.send(response.data);
   })
@@ -104,14 +106,25 @@ app.get('/top',(req,res)=>{
   axios.get('https://radiant-harbor-42641.herokuapp.com/topcontributors')
   .then((response)=>{
     let result=[]
-    Object.keys(response.data.payload).map((key)=>{
-      result.push({repo:key,top:response.data.payload[key]})
+    
+    //Getting all the values for key
+    let keys = Object.keys(response.data.payload)
+    
+    //Defining a function
+    let request = (key) => {
+        return new Promise((resolve, reject) => {
+           unirest.get('https://api.github.com/repos/GDGVIT/'+key+'?client_id='+process.env.client_id+'&client_secret='+process.env.client_secret)
+            .headers({'User-Agent':'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0'})
+            .end((resp)=>{
+              resolve({repo:key,top:response.data.payload[key],desc:resp.body.description})
+            })
+          })
+    }
+    Promise.all(keys.map(x => request(x)))
+      .then((result) => {
+        res.send(result)
     })
-    res.send(result)
-  })
-  .catch((error)=>{
-    console.error(error)
-  })
+})
 })
 
 // Apply gzip compression
