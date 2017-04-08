@@ -41,6 +41,16 @@ class Repo extends React.Component {
                             </div>
                             <div class="content table-responsive">
                               <table className="table table-bordered table-stripped">
+                              <thead>
+                              <tr>
+                              <th>
+                              <b>Repository</b>
+                              </th>
+                              <th>
+                              <b>Top contributor</b>
+                              </th>
+                              </tr>
+                             </thead>
                                 <tbody>
                                   {mappedRepos}
                                 </tbody>

@@ -31,7 +31,7 @@ class App extends React.Component{
     return(
       <div>
         <div class="wrapper">
-        <div class="sidebar" data-color="green" data-image="assets/img/sidebar-4.jpg">
+        <div class="sidebar" data-color="green" data-image="assets/img/sidebar-5.jpg">
     <div class="sidebar-wrapper">
         <div class="logo">
             <a href="http://www.gdgvitvellore.com" class="simple-text">
@@ -88,17 +88,17 @@ class App extends React.Component{
             </div>
             <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-					<li>
+					<li class="navbar-social-li">
 							<a href="https://github.com/gdgvit">
 									<i class="fa fa-github"></i>
 							</a>
 					</li>
-					<li>
+					<li class="navbar-social-li">
 						<a href="#">
 							<i class="fa fa-facebook"></i>
 						</a>
 					</li>
-					<li>
+					<li class="navbar-social-li">
 						<a href="#">
 							<i class="fa fa-google-plus"></i>
 						</a>
@@ -116,22 +116,22 @@ class App extends React.Component{
     <div class="container-fluid">
         <nav class="pull-left">
             <ul>
-                <li>
+                <li class="navbar-social-li">
                     <a href="http://gdgvitvellore.com">
                         Home
                     </a>
                 </li>
-                <li>
+                <li class="navbar-social-li">
                     <a href="https://facebook.com/gdgvitvellore">
                         Facebook
                     </a>
                 </li>
-                <li>
+                <li class="navbar-social-li">
                     <a href="https://github.com/gdgvit">
                         GitHub
                     </a>
                 </li>
-                <li>
+                <li class="navbar-social-li">
                     <a href="https://blog.gdgvitvellore.com">
                      Blog
                  </a>
