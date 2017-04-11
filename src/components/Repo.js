@@ -19,6 +19,7 @@ class Repo extends React.Component {
   }
   render(){
     const {topplayers}=this.props
+    console.log(topplayers);
     let playerList=[]
     topplayers.forEach((player)=>{
       if(playerList.indexOf(player.top)<0){
@@ -33,7 +34,7 @@ class Repo extends React.Component {
           count=count+1
         }
       })
-      playerCountList.push({name:player.name,count:count})
+      playerCountList.push({name:player.name,count:count,desc:player.desc})
     })
     let finalList=[]
     console.log(topplayers)
@@ -52,7 +53,7 @@ class Repo extends React.Component {
     sortedPlayers.forEach((repo)=>{
       playerCountList.forEach((player)=>{
         if(player.name==repo.top && reposCounted.indexOf(repo.repo)<0){
-          finalList.push({name:player.name,repo:repo.repo,count:player.count})
+          finalList.push({name:player.name,repo:repo.repo,count:player.count,desc:repo.desc})
           reposCounted.push(repo.repo)
         }
       })
@@ -76,7 +77,7 @@ class Repo extends React.Component {
     return 0
     })
     const mappedRepos=finalSortedList.map((player)=>
-      <tr key={player.repo}><td>{player.repo}</td><td>{player.name}</td></tr>
+      <tr key={player.repo}><td><span className="repo-name">{player.repo}</span> <span className="small">{player.desc}</span></td><td>{player.name}</td></tr>
     )
     return(
       <div>
