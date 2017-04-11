@@ -26,3 +26,6 @@ All the frontend files are located in `/src/`
 + `/src/components/Leaderboard.js` - A Leaderboard based on the weekly activity of members
 
 # Screenshots
+![Alt text](/screenshots/screenshot1.PNG?raw=true "Screenshot 1")
+![Alt text](/screenshots/screenshot2.PNG?raw=true "Screenshot 2")
+![Alt text](/screenshots/screenshot3.PNG?raw=true "Screenshot 3")
