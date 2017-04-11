@@ -10,7 +10,7 @@
 # To run
 Before running create a `.env` file containing `client_secret=xxxx cliend_id=xxxxxx` using the values obtained from GitHub.
 
-Either go to https://info.gdgvitvellore.com/
+Either go to https://info.gdgvitvellore.com
 
 or clone the repo and run `npm install` && `npm start`
 
