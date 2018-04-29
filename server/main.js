@@ -89,7 +89,7 @@ app.get('/repos',function(req,res){
 })
 
 app.get('/leaderboard',(req,res)=>{
-  axios.get('https://radiant-harbor-42641.herokuapp.com/leaderboard')
+  axios.get('https://gdginfoapi.herokuapp.com/leaderboard')
   .then((response)=>{
     let result=[]
     Object.keys(response.data.payload).map((key)=>{
@@ -103,13 +103,13 @@ app.get('/leaderboard',(req,res)=>{
 })
 
 app.get('/top',(req,res)=>{
-  axios.get('https://radiant-harbor-42641.herokuapp.com/topcontributors')
+  axios.get('https://gdginfoapi.herokuapp.com/topcontributors')
   .then((response)=>{
     let result=[]
-    
+
     //Getting all the values for key
     let keys = Object.keys(response.data.payload)
-    
+
     //Defining a function
     let request = (key) => {
         return new Promise((resolve, reject) => {
