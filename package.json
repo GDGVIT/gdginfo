@@ -133,7 +133,7 @@
     "ip": "^1.1.2",
     "json-loader": "^0.5.4",
     "material-ui": "^0.16.0",
-    "node-sass": "^4.0.0",
+    "node-sass": "^4.9.0",
     "normalize.css": "^5.0.0",
     "postcss-loader": "^1.1.0",
     "react": "^15.0.0",
